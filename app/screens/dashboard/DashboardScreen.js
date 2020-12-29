@@ -5,7 +5,6 @@ import styled from 'styled-components/native'
 
 export default function DashboardScreen() {
   const user = useSelector(state => {
-    console.log(state);
     return state
   })
 
