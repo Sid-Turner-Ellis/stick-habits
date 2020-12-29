@@ -9,7 +9,7 @@
       "**/*"
     ],
     "splash": {
-      "image": "./splash.png",
+      "image": "",
       "backgroundColor": "#FEF9B0",
       "resizeMode": "cover"
     }

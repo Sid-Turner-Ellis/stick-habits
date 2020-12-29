@@ -1,3 +1,4 @@
+import initialState from '../../mocks/mockState'
 const INCREMENT = 'increment'
 const DECREMENT = 'decrement'
 
@@ -9,9 +10,7 @@ export const decrement = () => ({
   type: DECREMENT
 })
 
-const initialState = {
-  count: 5
-}
+
 
 function counterReducer (state = initialState, action) {
   switch (action.type) {

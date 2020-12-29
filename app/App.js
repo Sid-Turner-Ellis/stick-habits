@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {useEffect} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import {Provider} from 'react-redux'
 import getStoreFunction from './redux/configureStore'
@@ -8,11 +8,26 @@ import { PersistGate } from 'redux-persist/integration/react'
 import styled,{ ThemeProvider } from 'styled-components/native'
 import theme from './globals/theme'
 import Dashboard from './screens/dashboard/DashboardScreen'
+import SignUp from './screens/signup/SignUpScreen'
 import constants from 'expo-constants'
+import * as SplashScreen from 'expo-splash-screen';
 
 
 export default function App() {
   const {store, persistor} = getStoreFunction();
+  const loggedIn = store.getState().user.createdAccount ? true : false
+
+  useEffect(()=>{
+    // this will display the splash screen
+    SplashScreen.preventAutoHideAsync()
+
+    // this will hide it again
+    setTimeout(()=>{
+      SplashScreen.hideAsync()
+    },2000)
+
+  },[])
+
   // use this constant to add padding to the top for android and also a inSafeView for IOS
   const topPadding = constants.statusBarHeight
   return (
@@ -21,7 +36,7 @@ export default function App() {
           <ThemeProvider theme={theme}>
             <AppContainer topPadding={topPadding}>
               {/* The navigator containing the screens will go here */}
-              <Dashboard/>
+              {!loggedIn ? <Dashboard /> : <SignUp />}
             </AppContainer>
           </ThemeProvider>
         <StatusBar style="auto" />
