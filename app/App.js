@@ -5,6 +5,10 @@ import {Provider} from 'react-redux'
 import getStoreFunction from './redux/configureStore'
 import { PersistGate } from 'redux-persist/integration/react'
 
+import { ThemeProvider } from 'styled-components/native'
+import theme from './globals/theme'
+import Dashboard from './screens/dashboard/DashboardScreen'
+
 
 export default function App() {
   const {store, persistor} = getStoreFunction();
@@ -12,10 +16,11 @@ export default function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+          <ThemeProvider theme={theme}>
+            {/* The navigator containing the screens will go here */}
+            <Dashboard/>
+          </ThemeProvider>
         <StatusBar style="auto" />
-      </View>
       </PersistGate>
     </Provider>
 
