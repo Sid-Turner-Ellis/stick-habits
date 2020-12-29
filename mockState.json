@@ -1,0 +1,34 @@
+{
+  "user": {
+    "id":"1indfs4njo09098v8hg",
+    "email": "sid.turner.ellis@gmail.com",
+    "last_login": 1609255704,
+    "name":"sid",
+    "created_account": 1609255704,
+    "premium_account": false
+  },
+  "habits": [
+    {
+      "name": "read",
+      "description": "readbook every hour for at least 6 days per week",
+      "target_length_days": 66,
+      "rules": {
+        "type": "twodayrule",
+        "target_per_day": 5,
+        "last_updated": 1609255704
+      },
+      "entries": [
+        {
+          "07022020" : {
+            "value": 3,
+            "timestamp": 1609251498
+          }
+
+        }
+
+      ]
+    }
+  ]
+}
+
+
