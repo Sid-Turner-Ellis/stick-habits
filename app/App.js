@@ -4,6 +4,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import {Provider} from 'react-redux'
 import getStoreFunction from './redux/configureStore'
 import { PersistGate } from 'redux-persist/integration/react'
+
+import { ThemeProvider } from 'styled-components'
+import theme from './globals/theme'
 import Dashboard from './screens/dashboard/Dashboard'
 
 
@@ -13,9 +16,10 @@ export default function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        {/* The navigator containing the screens will go here */}
-        <Dashboard/>
-
+          <ThemeProvider theme={theme}>
+            {/* The navigator containing the screens will go here */}
+            <Dashboard/>
+          </ThemeProvider>
         <StatusBar style="auto" />
       </PersistGate>
     </Provider>

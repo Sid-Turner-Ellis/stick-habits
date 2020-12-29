@@ -1,7 +1,8 @@
 import {createStore , combineReducers} from 'redux'
 import userReducer from './ducks/user'
 import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+// import storage from 'redux-persist/lib/storage'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const reducer = combineReducers({
   user: userReducer
@@ -9,7 +10,7 @@ const reducer = combineReducers({
 
 const persistConfig = {
   key: 'root',
-  storage,
+  storage: AsyncStorage,
 }
 
 const persistedReducer = persistReducer(persistConfig, reducer)
