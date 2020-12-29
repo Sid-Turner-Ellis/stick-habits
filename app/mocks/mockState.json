@@ -20,19 +20,19 @@
       "entries": [
       {
         "value": 3,
-        "date":"111220",
+        "date":"11/12/2020",
         "timestamp": 1609251498,
         "completed": true
       },
       {
         "value": 3,
-        "date":"121220",
+        "date":"12/12/2020",
         "timestamp": 1609251498,
         "completed": true
       },
       {
         "value": 3,
-        "date":"131220",
+        "date":"13/12/2020",
         "timestamp": 1609251498,
         "completed": true
       }

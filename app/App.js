@@ -9,9 +9,7 @@ import styled,{ ThemeProvider } from 'styled-components/native'
 import theme from './globals/theme'
 import Dashboard from './screens/dashboard/DashboardScreen'
 import constants from 'expo-constants'
-import {getStreak} from './mocks/mockGetStreak'
 
-getStreak()
 
 export default function App() {
   const {store, persistor} = getStoreFunction();

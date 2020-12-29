@@ -7,6 +7,12 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "splash": {
+      "image": "./splash.png",
+      "backgroundColor": "#FEF9B0",
+      "resizeMode": "cover"
+    }
+    
   }
 }
