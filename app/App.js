@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import {Provider} from 'react-redux'
 import getStoreFunction from './redux/configureStore'
 import { PersistGate } from 'redux-persist/integration/react'
+import Dashboard from './screens/dashboard/Dashboard'
 
 
 export default function App() {
@@ -12,10 +13,10 @@ export default function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+        {/* The navigator containing the screens will go here */}
+        <Dashboard/>
+
         <StatusBar style="auto" />
-      </View>
       </PersistGate>
     </Provider>
 
