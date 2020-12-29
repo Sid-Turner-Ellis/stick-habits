@@ -5,9 +5,9 @@ import {Provider} from 'react-redux'
 import getStoreFunction from './redux/configureStore'
 import { PersistGate } from 'redux-persist/integration/react'
 
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components/native'
 import theme from './globals/theme'
-import Dashboard from './screens/dashboard/Dashboard'
+import Dashboard from './screens/dashboard/DashboardScreen'
 
 
 export default function App() {
