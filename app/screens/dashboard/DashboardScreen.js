@@ -3,20 +3,22 @@ import {View, Text} from 'react-native'
 import {useDispatch, useSelector} from 'react-redux'
 import styled from 'styled-components/native'
 
+import DefaultAppScreen from '../../shared-components/DefaultAppScreen'
+
 export default function DashboardScreen() {
   const user = useSelector(state => {
     return state
   })
 
   return (
-    <View>
+    <DefaultAppScreen>
       <Text>Dashboard</Text>
       <Text>Dashboard</Text>
       <StyledText>Dashboard</StyledText>
       <Text>Dashboard</Text>
       <Text>Dashboard</Text>
       <Text>Dashboard</Text>
-    </View>
+    </DefaultAppScreen>
 
   )
 }
