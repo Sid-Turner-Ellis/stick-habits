@@ -7,7 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 import styled,{ ThemeProvider } from 'styled-components/native'
 import theme from './globals/theme'
-import Dashboard from './screens/dashboard/DashboardScreen'
+import Navigator from './navigator/Navigator'
 import SignUp from './screens/signup/SignUpScreen'
 import constants from 'expo-constants'
 import * as SplashScreen from 'expo-splash-screen';
@@ -36,7 +36,7 @@ export default function App() {
           <ThemeProvider theme={theme}>
             <AppContainer topPadding={topPadding}>
               {/* The navigator containing the screens will go here */}
-              {!loggedIn ? <Dashboard /> : <SignUp />}
+              {!loggedIn ? <Navigator /> : <SignUp />}
             </AppContainer>
           </ThemeProvider>
         <StatusBar style="auto" />
