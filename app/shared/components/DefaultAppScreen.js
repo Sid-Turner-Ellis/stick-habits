@@ -8,7 +8,6 @@ export default function DefaultAppScreen(props) {
     <StyledView>
       {props.children}
     </StyledView>
-
   )
 }
 

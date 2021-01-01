@@ -8,11 +8,13 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "extra": {
+      "URL": "http://localhost:4000/api"        
+    },
     "splash": {
       "image": "",
       "backgroundColor": "#FEF9B0",
       "resizeMode": "cover"
     }
-    
   }
 }
