@@ -14,7 +14,7 @@ export default function DefaultAppScreen(props) {
 const StyledView = styled.View`
   background-color: ${props => props.theme.colors.backgroundColor};
   flex: 1;
-  padding-left: 20;
-  padding-right: 20;
+  /* padding-left: 20; */
+  /* padding-right: 20; */
 `;
 

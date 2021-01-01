@@ -1,18 +1,17 @@
 import React, {useState, useEffect} from 'react'
-import {View, Text, TextInput, Dimensions, Button, Alert, ActivityIndicator, modal} from 'react-native'
+import {View, Text, TextInput, Dimensions, Button, Alert, ActivityIndicator} from 'react-native'
 import * as Network from 'expo-network';
 import Constants from "expo-constants";
 import {useDispatch, useSelector} from 'react-redux'
 import {causeRehydrate, createUser} from '../../redux/ducks/user'
-
 
 import styled from 'styled-components/native'
 import useInput from '../../shared/functions/useInput'
 import isNotEmpty from '../../shared/functions/isNotEmpty'
 import alertFunction from '../../shared/functions/alertFunction'
 import {validateEmail, validatePassword} from './signUpValidators'
+import DefaultAppScreen from '../../shared/components/DefaultAppScreen'
 import {createAccountService} from '../../shared/services/createAccountService';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -20,26 +19,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {StyledTextInput,StyledOuterFormContainer, StyledInnerFormContainer } from '../../shared/components/SignFormStyles'
 import { set } from 'react-native-reanimated';
 
-export default function signIn({setForm}) {
-  const [loading, setLoading] = useState(false)
+export default function signIn({setForm, setIsLoading}) {
   const dispatch = useDispatch()
-  const name = useInput()
-  const email = useInput()
-  const password = useInput()
-  const repeatPassword = useInput()
-
-
-  const fakeuser = {
-    name: "sifgd",
-    email: "sidd@mailcunt.com",
-    id: "dfadfgsfslagasfnu"
-  }
-
+  const [name, setName] = useInput()
+  const [email, setEmail] = useInput()
+  const [password, setPassword] = useInput()
+  const [repeatPassword, setRepeatPassword] = useInput()
 
 
   async function handleSubmit() {
-
-
     if (await (await Network.getNetworkStateAsync()).isConnected) {
         // check its not empty
         if (isNotEmpty(email.value, password.value, repeatPassword.value)) {
@@ -48,10 +36,10 @@ export default function signIn({setForm}) {
             // check the password fields match
             if (validatePassword(password.value, repeatPassword.value).validated) {
               // make the request
-              setLoading(true)
+              setIsLoading(true)
               try {
                 const res = await createAccountService({name: name.value,email:email.value,password:password.value})
-                setLoading(false)
+                setIsLoading(false)
                 if(res.error){
                   alertFunction('There was an issue', res.error.message)
                   // check if the account has already been made and redirect to sign in page
@@ -68,9 +56,14 @@ export default function signIn({setForm}) {
               }
             } else {
                 // show an alert that the passwords should match
+                setPassword('')
+                setRepeatPassword('')
                 alertFunction('Password issue', validatePassword(password.value, repeatPassword.value).message)
+
+
             }
           }else {
+            setEmail('')
             alertFunction('Email issue', 'Please enter a valid email')
           }
         } else {
@@ -85,7 +78,8 @@ export default function signIn({setForm}) {
 
 
   return (
-    <StyledView>
+    <View>
+
       <StyledOuterFormContainer>
 
         <StyledInnerFormContainer>
@@ -111,18 +105,14 @@ export default function signIn({setForm}) {
         <StyledButton color={'red'} title="Sign up" onPress={()=>{
           handleSubmit()
         }}/>
-        {loading ? <ActivityIndicator /> : null}
-         
 
       </StyledOuterFormContainer>
-    </StyledView>
+    </View>
   )
 
 }
 
-const StyledView = styled.View`
-  color:red;
-`;
+
 
 const StyledButton = styled.Button`
 

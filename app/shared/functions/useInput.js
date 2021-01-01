@@ -9,5 +9,5 @@ export default function useForm(){
         setValue(prev => text)
       }
     }
-    return bind
+    return [bind, setValue]
 }

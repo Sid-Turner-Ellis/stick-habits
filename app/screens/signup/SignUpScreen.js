@@ -5,15 +5,18 @@ import styled from 'styled-components/native'
 
 import SignUp from './SignUp'
 import SignIn from './SignIn'
+import LoadingModal from '../../shared/components/LoadingModal'
+import DefaultAppScreen from '../../shared/components/DefaultAppScreen';
 
 
 export default function SignUpScreen() {
   const [form, setForm] = useState('SignUp')
+  const [isLoading, setIsLoading] = useState(false)
 
  
 
   return (
-    <Wrapper>
+    <DefaultAppScreen>
       <InnerContainerTop>
         <Text>Lets get started</Text>
         <SelectorContainer>
@@ -22,11 +25,13 @@ export default function SignUpScreen() {
         </SelectorContainer>
       </InnerContainerTop>
 
+      <LoadingModal isLoading={isLoading}/>
+
       <InnerContainerBottom>
         {/* Render each form depending which is selected */}
-        {form == 'SignUp'? <SignUp setForm={setForm}/> : <SignIn />}
+        {form == 'SignUp'? <SignUp setForm={setForm} setIsLoading={setIsLoading}/> : <SignIn setIsLoading={setIsLoading} />}
       </InnerContainerBottom>
-    </Wrapper>
+    </DefaultAppScreen>
 
   )
 }
