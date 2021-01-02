@@ -3,21 +3,19 @@ import Constants from "expo-constants";
 const URL = "http://0585c08d3c4f.ngrok.io/api"
 
 
-export const createAccountService = async({name, email, password}) => {
+export const signInService = async( email, password) => {
+  const requestObject = {email, password}
+
 
   try {
-    const timestamp = Math.floor(Date.now() / 1000);
-    const requestObject = { name ,email, password, timestamp}
-
-    const unparsedResponse = await fetch(URL + "/account/createaccount", {
+    const unparsedResponse = await fetch(URL + "/account/signin", {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(requestObject)
     })
-  
-  
+    console.clear()
     const response = await unparsedResponse.json()
     return response
 

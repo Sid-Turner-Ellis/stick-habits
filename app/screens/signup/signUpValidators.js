@@ -1,6 +1,7 @@
 
 
 export function validatePassword(pass, repeatPass){
+  
   // check if the passwords match
   if(pass != repeatPass){
     return {

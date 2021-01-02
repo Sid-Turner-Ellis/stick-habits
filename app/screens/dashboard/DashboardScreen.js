@@ -8,6 +8,7 @@ import DefaultAppScreen from '../../shared/components/DefaultAppScreen'
 
 export default function DashboardScreen() {
   const dispatch = useDispatch()
+  const state = useSelector(state => state)
 
   useEffect(()=>{
     // this will cause redux to rehydrate the store after the page changes

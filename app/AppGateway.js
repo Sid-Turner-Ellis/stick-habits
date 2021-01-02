@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux'
 
 import styled from 'styled-components/native'
 import Navigator from './navigator/Navigator'
-import SignUpScreen from './screens/signup/SignUpScreen'
+import AccountScreen from './screens/signup/AccountScreen'
 import constants from 'expo-constants'
 
 
@@ -21,7 +21,7 @@ export default function AppGateway(){
 
   return(
     <AppContainer topPadding={constants.statusBarHeight}>
-      {loggedIn ? <Navigator /> : <SignUpScreen />}
+      {loggedIn ? <Navigator /> : <AccountScreen />}
     </AppContainer>
   )
 }

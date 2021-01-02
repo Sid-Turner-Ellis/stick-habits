@@ -1,9 +1,8 @@
 const initialState = {
   account: {
       id: null,
-      points: null,
+      points: 0,
       email: null,
-      last_login: null,
       name: null,
       created_account: null,
       premium_account: false,

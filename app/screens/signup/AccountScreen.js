@@ -10,7 +10,7 @@ import DefaultAppScreen from '../../shared/components/DefaultAppScreen';
 
 
 export default function SignUpScreen() {
-  const [form, setForm] = useState('SignUp')
+  const [form, setForm] = useState('SignIn')
   const [isLoading, setIsLoading] = useState(false)
 
  

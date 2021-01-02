@@ -48,10 +48,12 @@ export default function signIn({setForm, setIsLoading}) {
                   }
                 }else{
                   // no error - call a funtion to update the user state object
-                  dispatch(createUser({id:res.id,name: res.name, email: res.email}))
+                  dispatch(createUser({id:res.id,name: name.value, email: res.email}))
 
                 }
               }catch(e){
+                setIsLoading(false);
+
                 alertFunction('Our servers are down', 'Please let our support team know')
               }
             } else {
@@ -72,7 +74,7 @@ export default function signIn({setForm, setIsLoading}) {
         }
     } else {
       // show alert if not connected to the internet
-      alertFunction('Couldnt create account', 'All fields must be filled')
+      alertFunction('No network', 'Please connect to the internet and then create an account')
     }
 }
 
