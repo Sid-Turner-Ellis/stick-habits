@@ -1,12 +1,11 @@
-const state = {
-  user: {
+const initialState = {
+  account: {
       id: null,
-      points: null,
+      points: 0,
       email: null,
-      last_login: null,
       name: null,
       created_account: null,
-      premium_account: false
+      premium_account: false,
   },
   habits: [{
       name: "mock this shouldnt be here",
@@ -36,7 +35,8 @@ const state = {
               completed: true
           }
       ]
-  }]
+  }],
+  rehydrate: false
 }
 
-export default state
+export default initialState

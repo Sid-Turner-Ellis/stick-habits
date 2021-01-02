@@ -4,8 +4,10 @@ const light_mode_theme = {
   colors: {
     primary:'red',
     secondary:'blue',
-    backgroundColor: '#f5f5f5'
+    backgroundColor: '#f5f5f5',
+    darkGrey: '#c2c2c2'
   },
+  
   navigator : {
     backgroundColor: 'white',
     unselectedIconColor: '#c2c2c2',

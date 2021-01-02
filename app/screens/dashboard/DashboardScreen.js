@@ -1,14 +1,19 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {View, Text} from 'react-native'
 import {useDispatch, useSelector} from 'react-redux'
 import styled from 'styled-components/native'
+import { causeRehydrate } from '../../redux/ducks/user';
 
-import DefaultAppScreen from '../../shared-components/DefaultAppScreen'
+import DefaultAppScreen from '../../shared/components/DefaultAppScreen'
 
 export default function DashboardScreen() {
-  const user = useSelector(state => {
-    return state
-  })
+  const dispatch = useDispatch()
+  const state = useSelector(state => state)
+
+  useEffect(()=>{
+    // this will cause redux to rehydrate the store after the page changes
+    dispatch(causeRehydrate())
+  },[])
 
   return (
     <DefaultAppScreen>

@@ -1,31 +1,66 @@
-import initialState from '../../mocks/mockState'
-const INCREMENT = 'increment'
-const DECREMENT = 'decrement'
+import initialState from '../initialState'
 
-export const increment = () => ({
-  type: INCREMENT
+const CREATEUSER = 'createuser'
+const SIGNIN = 'signin'
+const CAUSEREHYDRATE = 'causeRehydrate'
+
+export const createUser = ({name, id, email}) => ({
+  
+  type: CREATEUSER,
+  payload: {
+    id,
+    name,
+    email,
+    created_account: Math.floor(Date.now() / 1000)
+  }
 })
 
-export const decrement = () => ({
-  type: DECREMENT
-})
+export const signUserIn = ({premiumAccount: premium_account, email, state, _id:id, createdAt: created_account,name }) => {
+  console.log('the id ', premium_account, created_account, email);
+  let pl;
+  console.log('from reducer', state);
+  if(state){
+    pl = {...state, account: {...state.account, premium_account,email, id, created_account, name }}
+  }else {
+    pl = {account: {premium_account,email, id, created_account, name} }
+  }
+  return {type:SIGNIN, payload: pl}
+
+}
+
+
+  // when signing in a user without saved state, We need to have their name, ID and createdAt... basically all of the account
+
+
+export const causeRehydrate = () => {
+  return {type:CAUSEREHYDRATE}
+}
 
 
 
-function counterReducer (state = initialState, action) {
+function userReducer (state = initialState, action) {
   switch (action.type) {
-    case INCREMENT:
-      return {...state, count: state.count + 1}
+
+    case CREATEUSER:
+
+      return {...state, account:{...state.account, ...action.payload} }
       break;
 
-      case DECREMENT:
-        return {...state, count: state.count - 1}
+
+      case SIGNIN:
+
+        return {...action.payload}
+        break;
+
+
+      case CAUSEREHYDRATE:
+
+        return {...state, rehydrate: !state.rehydrate}
         break;
   
     default:
       return state
-      break;
   }
 }
 
-export default counterReducer;
+export default userReducer;
