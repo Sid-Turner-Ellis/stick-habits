@@ -4,7 +4,6 @@ const URL = "http://0585c08d3c4f.ngrok.io/api"
 
 export async function syncStateService(id, state){
   const requestObject = {id, state}
-  console.log('oioistate',state);
   try {
     const unparsedResponse = await fetch(URL + "/updatestate", {
       method: 'POST', 

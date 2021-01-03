@@ -12,9 +12,11 @@ const initialState = {
       description: " mock this shouldnt be herebook every hour for at least 6 days per week",
       target_length_days: 66,
       rules: {
-          type: "twodayrule",
-          target_per_day: 5,
-          last_updated: 1609255704
+        type: "twodayrule",
+        unit: ["page", "pages"],
+        target_per_day: 5,
+        chances: 2,
+        last_updated: 1609255704
       },
       entries: [{
               value: 3,
