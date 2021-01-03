@@ -2,7 +2,7 @@ import React,{useEffect} from 'react';
 import {View, Text} from 'react-native'
 import {useDispatch, useSelector} from 'react-redux'
 import styled from 'styled-components/native'
-import { causeRehydrate } from '../../redux/ducks/user';
+import { causeRehydrate } from '../../redux/ducks/appState';
 
 import DefaultAppScreen from '../../shared/components/DefaultAppScreen'
 

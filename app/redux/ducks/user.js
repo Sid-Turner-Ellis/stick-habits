@@ -2,7 +2,6 @@ import initialState from '../initialState'
 
 const CREATEUSER = 'createuser'
 const SIGNIN = 'signin'
-const CAUSEREHYDRATE = 'causeRehydrate'
 
 export const createUser = ({name, id, email}) => ({
   
@@ -32,10 +31,6 @@ export const signUserIn = ({premiumAccount: premium_account, email, state, _id:i
   // when signing in a user without saved state, We need to have their name, ID and createdAt... basically all of the account
 
 
-export const causeRehydrate = () => {
-  return {type:CAUSEREHYDRATE}
-}
-
 
 
 function userReducer (state = initialState, action) {
@@ -50,12 +45,6 @@ function userReducer (state = initialState, action) {
       case SIGNIN:
 
         return {...action.payload}
-        break;
-
-
-      case CAUSEREHYDRATE:
-
-        return {...state, rehydrate: !state.rehydrate}
         break;
   
     default:

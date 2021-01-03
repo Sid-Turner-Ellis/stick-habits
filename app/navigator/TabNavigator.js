@@ -14,10 +14,16 @@ const Tab = createBottomTabNavigator();
 
 export default function TabNavigator(){
   return(
-    <Tab.Navigator initialRouteName={"Dashboard"} backBehavior={"initialRoute"} tabBar={(props)=> <TabBar {...props}/>}>
+    <Tab.Navigator  
+      initialRouteName={"Habits"}  
+      backBehavior={"initialRoute"} 
+      tabBar={(props)=> <TabBar {...props}/>}
+      >
         <Tab.Screen 
           name="Dashboard" 
           component={DashboardScreen}
+          tabBarVisible={false}
+        
           initialParams={{
             icon: 'home'
           }}
