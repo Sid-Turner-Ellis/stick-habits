@@ -1,7 +1,9 @@
+import AddHabitModal from '../../screens/habits/AddHabitModal'
 import initialState from '../initialState'
 
 const CREATEUSER = 'createuser'
 const SIGNIN = 'signin'
+const ADDHABIT = 'addHabit'
 
 export const createUser = ({name, id, email}) => ({
   
@@ -28,7 +30,22 @@ export const signUserIn = ({premiumAccount: premium_account, email, state, _id:i
 }
 
 
-  // when signing in a user without saved state, We need to have their name, ID and createdAt... basically all of the account
+export const addHabit = ({name, type:habitType, units, chances, target_per_day}) => ({
+  type: ADDHABIT,
+  payload: {
+    name,
+    created_habit: Math.floor(Date.now() / 1000),
+    rules : {
+      type:habitType,
+      units,
+      target_per_day,
+      chances,
+      last_updated: Math.floor(Date.now() / 1000)
+    },
+    entries:[]
+  }
+})
+
 
 
 
@@ -46,6 +63,11 @@ function userReducer (state = initialState, action) {
 
         return {...action.payload}
         break;
+
+        case ADDHABIT:
+
+          return {...state, habits: [...state.habits, action.payload]}
+          break;
   
     default:
       return state

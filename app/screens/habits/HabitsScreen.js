@@ -8,15 +8,17 @@ import {causeRehydrate} from '../../redux/ducks/appState'
 
 
 export default function HabitsScreen() {
+  const [habitObject, setHabitObject] = useState(null)
   const dispatch = useDispatch()
   const tabBarVisible = useSelector(state => state.appState.tabBarVisible)
-  // dispatch(setTabBarVisible(false));
+
+
 
 
 
   return (
     <DefaultAppScreen>
-      <AddHabitModal/>
+      <AddHabitModal />
       <Text>Habits</Text>
       <Button title="Add habit" onPress={()=>{
         // open the habit modal
