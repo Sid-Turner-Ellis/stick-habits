@@ -1,12 +1,14 @@
+import { v4 as uuidv4 } from 'uuid';
+
 import AddHabitModal from '../../screens/habits/AddHabitModal'
 import initialState from '../initialState'
 
 const CREATEUSER = 'createuser'
 const SIGNIN = 'signin'
 const ADDHABIT = 'addHabit'
+const DELETEHABIT = 'deleteHabit'
 
 export const createUser = ({name, id, email}) => ({
-  
   type: CREATEUSER,
   payload: {
     id,
@@ -17,7 +19,6 @@ export const createUser = ({name, id, email}) => ({
 })
 
 export const signUserIn = ({premiumAccount: premium_account, email, state, _id:id, createdAt: created_account,name }) => {
-  console.log('the id ', premium_account, created_account, email);
   let pl;
   console.log('from reducer', state);
   if(state){
@@ -33,6 +34,7 @@ export const signUserIn = ({premiumAccount: premium_account, email, state, _id:i
 export const addHabit = ({name, type:habitType, units, chances, target_per_day}) => ({
   type: ADDHABIT,
   payload: {
+    habit_id: uuidv4(),
     name,
     created_habit: Math.floor(Date.now() / 1000),
     rules : {
@@ -45,6 +47,11 @@ export const addHabit = ({name, type:habitType, units, chances, target_per_day})
     entries:[]
   }
 })
+
+export const deleteHabit = (habit) => (({
+  type: DELETEHABIT,
+  payload: habit.habit_id
+}))
 
 
 
@@ -67,6 +74,12 @@ function userReducer (state = initialState, action) {
         case ADDHABIT:
 
           return {...state, habits: [...state.habits, action.payload]}
+          break;
+
+          
+        case DELETEHABIT:
+
+          return {...state, habits: state.habits.filter(v => action.payload != v.habit_id)}
           break;
   
     default:
