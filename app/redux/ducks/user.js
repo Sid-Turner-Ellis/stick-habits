@@ -1,11 +1,14 @@
+import { v4 as uuidv4 } from 'uuid';
+
+import AddHabitModal from '../../screens/habits/AddHabitModal'
 import initialState from '../initialState'
 
 const CREATEUSER = 'createuser'
 const SIGNIN = 'signin'
-const CAUSEREHYDRATE = 'causeRehydrate'
+const ADDHABIT = 'addHabit'
+const DELETEHABIT = 'deleteHabit'
 
 export const createUser = ({name, id, email}) => ({
-  
   type: CREATEUSER,
   payload: {
     id,
@@ -16,7 +19,6 @@ export const createUser = ({name, id, email}) => ({
 })
 
 export const signUserIn = ({premiumAccount: premium_account, email, state, _id:id, createdAt: created_account,name }) => {
-  console.log('the id ', premium_account, created_account, email);
   let pl;
   console.log('from reducer', state);
   if(state){
@@ -29,12 +31,29 @@ export const signUserIn = ({premiumAccount: premium_account, email, state, _id:i
 }
 
 
-  // when signing in a user without saved state, We need to have their name, ID and createdAt... basically all of the account
+export const addHabit = ({name, type:habitType, units, chances, target_per_day}) => ({
+  type: ADDHABIT,
+  payload: {
+    habit_id: uuidv4(),
+    name,
+    created_habit: Math.floor(Date.now() / 1000),
+    rules : {
+      type:habitType,
+      units,
+      target_per_day,
+      chances,
+      last_updated: Math.floor(Date.now() / 1000)
+    },
+    entries:[]
+  }
+})
+
+export const deleteHabit = (habit) => (({
+  type: DELETEHABIT,
+  payload: habit.habit_id
+}))
 
 
-export const causeRehydrate = () => {
-  return {type:CAUSEREHYDRATE}
-}
 
 
 
@@ -52,11 +71,16 @@ function userReducer (state = initialState, action) {
         return {...action.payload}
         break;
 
+        case ADDHABIT:
 
-      case CAUSEREHYDRATE:
+          return {...state, habits: [...state.habits, action.payload]}
+          break;
 
-        return {...state, rehydrate: !state.rehydrate}
-        break;
+          
+        case DELETEHABIT:
+
+          return {...state, habits: state.habits.filter(v => action.payload != v.habit_id)}
+          break;
   
     default:
       return state

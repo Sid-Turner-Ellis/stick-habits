@@ -10,16 +10,15 @@ const state = {
   },
   habits: [{
       name: "mock this shouldnt be here",
-      description: " mock this shouldnt be herebook every hour for at least 6 days per week",
       created_habit:1609255704, 
       rules: {
           type: "twodayrule",
-          unit: ["page", "pages"],
+          units: 'pages',
           target_per_day: 5,
           chances: 2,
           last_updated: 1609255704
-      }
-
+      },
+      entries:[]
   }]
 }
 

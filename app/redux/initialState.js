@@ -38,7 +38,6 @@ const initialState = {
           }
       ]
   }],
-  rehydrate: false
 }
 
 export default initialState

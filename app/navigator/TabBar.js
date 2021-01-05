@@ -3,12 +3,16 @@ import styled, {ThemeContext} from 'styled-components/native'
 import {View, Text, TouchableOpacity} from 'react-native'
 import { AntDesign } from '@expo/vector-icons'; 
 import theme from '../globals/theme';
+import {useDispatch, useSelector, useRef} from  'react-redux'
+
 
 
 
 export default function TabBar({state, navigation}){
   const [selected, setSelected] = useState('Dashboard')
   const theme = useContext(ThemeContext)
+  const tabBarVisible = useSelector(state => state.appState.tabBarVisible)
+
 
   function renderColor(routeName){return  isSelected(routeName) ? theme.colors.primary : theme.navigator.unselectedIconColor }
 
@@ -27,7 +31,10 @@ export default function TabBar({state, navigation}){
   const {routes} = state;
 
   return (
-    <StyledView>
+    <StyledView tabBarVisible={tabBarVisible} onLayout={(event)=>{
+      const {x, y, width, height} = event.nativeEvent.layout
+      // might want to put this in global state and then render the size of the other one based on it
+    }}>
       {
           routes.map(route => {
             return (
@@ -46,6 +53,8 @@ export default function TabBar({state, navigation}){
 }
 
 const StyledView = styled.View`
+  display:${({tabBarVisible}) => tabBarVisible ? '' : 'none'};
+  
   flex-direction: row;
   align-items: center;
   padding-top: 10;

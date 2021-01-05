@@ -12,6 +12,7 @@ export default function ProfileScreen() {
   async function handleOnPress(){
     const id = user.account.id
     const res = await syncStateService(id, user)
+    console.log(res);
     if(res.error){
       console.log(res);
       console.log('failed to sync');

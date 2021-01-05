@@ -1,22 +1,32 @@
-import React from 'react';
-import {View, Text} from 'react-native'
+import React,{useState} from 'react';
+import {View, Text, Button} from 'react-native'
 import {useDispatch, useSelector} from 'react-redux'
 import DefaultAppScreen from '../../shared/components/DefaultAppScreen'
+import AddHabitModal from './AddHabitModal'
+import HabitOverview from './HabitOverview'
+import {setTabBarVisible} from '../../redux/ducks/appState'
+import {causeRehydrate} from '../../redux/ducks/appState'
 
 
 export default function HabitsScreen() {
-  const user = useSelector(state => {
-    return state
-  })
+  const [habitObject, setHabitObject] = useState(null)
+  const dispatch = useDispatch()
+  const tabBarVisible = useSelector(state => state.appState.tabBarVisible)
+
+
+
+
 
   return (
     <DefaultAppScreen>
-      <Text>Haits</Text>
-      <Text>Haits</Text>
-      <Text>Haits</Text>
-      <Text>Haits</Text>
-      <Text>Haits</Text>
-      <Text>Haits</Text>
+      <AddHabitModal />
+      <Text>Habits</Text>
+      <HabitOverview/>
+      <Button title="Add habit" onPress={()=>{
+        // open the habit modal
+        dispatch(setTabBarVisible(false));
+        
+      }}/>
     </DefaultAppScreen>
 
   )

@@ -24,8 +24,6 @@ export const StyledTextInput = styled.TextInput`
   width: ${Math.floor((Dimensions.get('window').width / 100) * 80)};
   align-self:center;
 
-
-
 `;
 
 
