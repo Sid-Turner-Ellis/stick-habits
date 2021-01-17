@@ -1,6 +1,6 @@
 import Constants from "expo-constants";
-// const {URL} = Constants.manifest.extra
-const URL = "http://0585c08d3c4f.ngrok.io/api"
+const {URL} = Constants.manifest.extra
+// const URL = "http://0585c08d3c4f.ngrok.io/api"
 
 export async function syncStateService(id, state){
   const requestObject = {id, state}

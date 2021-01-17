@@ -15,7 +15,7 @@ const Tab = createBottomTabNavigator();
 export default function TabNavigator(){
   return(
     <Tab.Navigator  
-      initialRouteName={"Habits"}  
+      initialRouteName={"Dashboard"}  
       backBehavior={"initialRoute"} 
       tabBar={(props)=> <TabBar {...props}/>}
       >

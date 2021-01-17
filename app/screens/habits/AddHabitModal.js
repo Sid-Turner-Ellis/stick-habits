@@ -21,8 +21,6 @@ import { addHabit } from '../../redux/ducks/user';
 export default function AddHabitModal() {
   const showHabitModal = useSelector(state => !state.appState.tabBarVisible)
   const test = useSelector(state => state.user)
-  console.log(test);
-
   
 
   
