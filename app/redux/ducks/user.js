@@ -88,7 +88,7 @@ export const addHabit = ({name, type:habitType, units, chances, target_per_day})
       type:habitType,
       units,
       target_per_day,
-      chances,
+      chances_per_week: chances,
       last_updated: Math.floor(Date.now() / 1000)
     },
     entries:[]
@@ -101,23 +101,119 @@ export const deleteHabit = (habit) => (({
 }))
 
 
+
+
+
+
+
+
+
+
+
+
+
+// this is the mock entries object
+const oneDay = 86500
+const mockEntries = [
+  {
+    // value: value || 0,
+    dateString: createDateString(),
+    timestamp: Math.floor((Date.now() / 1000) - oneDay),
+    completed: true ,
+    dateString: "16.1.2021"
+  },
+  {
+    // value: value || 0,
+    dateString: createDateString(),
+    timestamp: Math.floor((Date.now() / 1000) - (oneDay*2)),
+    completed: true ,
+    dateString: "15.1.2021"
+  },
+  {
+    // value: value || 0,
+    dateString: createDateString(),
+    timestamp: Math.floor((Date.now() / 1000) - (oneDay*3)),
+    completed: false ,
+    dateString: "14.1.2021"
+  },  {
+    // value: value || 0,
+    dateString: createDateString(),
+    timestamp: Math.floor((Date.now() / 1000) - (oneDay*4)),
+    completed: false ,
+    dateString: "13.1.2021"
+  },  {
+    // value: value || 0,
+    dateString: createDateString(),
+    timestamp: Math.floor((Date.now() / 1000) - (oneDay*5)),
+    completed: false ,
+    dateString: "12.1.2021"
+  },  {
+    // value: value || 0,
+    dateString: createDateString(),
+    timestamp: Math.floor((Date.now() / 1000) - (oneDay*6)),
+    completed: false ,
+    dateString: "11.1.2021"
+  },  {
+    // value: value || 0,
+    dateString: createDateString(),
+    timestamp: Math.floor((Date.now() / 1000) - (oneDay*7)),
+    completed: true ,
+    dateString: "10.1.2021"
+  },  {
+    // value: value || 0,
+    dateString: createDateString(),
+    timestamp: Math.floor((Date.now() / 1000) - (oneDay*8)),
+    completed: true ,
+    dateString: "9.1.2021"
+  },  {
+    // value: value || 0,
+    dateString: createDateString(),
+    timestamp: Math.floor((Date.now() / 1000) - (oneDay*9)),
+    completed: true,
+    dateString: "8.1.2021"
+  },
+]
+
+
+
+
+
+
+
+
+
+
+
+
 // ENTRY FUNCTIONS
 export const createEntry = (habit,value) =>{
   // from this i will return the old habit object and filter any date string that matches today
   
   const {entries} = habit
+  // const newEntry = {
+  //   value: value || 0,
+  //   dateString: createDateString(),
+  //   timestamp: Math.floor((Date.now() / 1000)),
+  //   completed: value >= habit.rules.target_per_day ,
+  // }
+  // const updatedEntries = [newEntry, ...entries.filter(e => e.dateString != newEntry.dateString)]
+
+
+
+  // THIS IS THE MOCK DELETE THIS SHIET BOI
   const newEntry = {
-    value: value || 0,
     dateString: createDateString(),
     timestamp: Math.floor((Date.now() / 1000)),
-    completed: value >= habit.rules.target_per_day ,
-    // dateString: "18.1.2021"
+    completed: true ,
   }
-  const updatedEntries = [newEntry, ...entries.filter(e => e.dateString != newEntry.dateString)]
+  const updatedEntries = [newEntry,...mockEntries]
+
   const updatedHabit = {
     ...habit,
     entries: updatedEntries
   }
+
+  // mock enddddddddddddddddddddd
 
   return {
     type: CREATEENTRY,

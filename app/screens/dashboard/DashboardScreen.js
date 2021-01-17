@@ -5,6 +5,8 @@ import styled from 'styled-components/native'
 import { causeRehydrate } from '../../redux/ducks/appState';
 import {setTabBarVisible} from '../../redux/ducks/appState'
 import wasEntryMadeToday from '../../shared/functions/wasEntryMadeToday'
+import getStreak from '../../shared/functions/getStreak'
+
 
 import DefaultAppScreen from '../../shared/components/DefaultAppScreen'
 import { createEntry } from '../../redux/ducks/user';
@@ -70,6 +72,7 @@ function UpdateHabitValueModal({currentHabitID}){
   const [amount, setAmount] = useState(0)
   const dispatch = useDispatch()
 
+
   function onPressEvent(){
 
     // close the modal
@@ -83,7 +86,9 @@ function UpdateHabitValueModal({currentHabitID}){
     }else {
 
     }
-    console.log(createEntry(habit, amount).payload.updatedHabit)
+    dispatch(createEntry(habit, 100000))
+    console.log(getStreak(habit));
+    // getStreak(habit)
 
   }
 
